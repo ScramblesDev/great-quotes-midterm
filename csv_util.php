@@ -1,15 +1,16 @@
 <?php
-    //this reads and prints the entire csv file into an array
+    //this reads and prints the entire csv file into a php array
     //EXAMPLE:
-    //$csv = csvToArray('authors.csv');
-    //print_r($csv);
+    //$convertedArray = readCSV('authors.csv');
+    //print_r($convertedArray);
     function readCSV($csvFile) {
-        $file_to_read = fopen($csvFile, 'r');
+        $fh = fopen($csvFile, 'r');
     
-        while (!feof($file_to_read) ) {
-            $lines[] = fgetcsv($file_to_read, 1000, '#');
+        while (!feof($fh) ) {
+            $lines[] = fgetcsv($fh, 1000, '#');
         }
-        fclose($file_to_read);
+
+        fclose($fh);
         return $lines;
     }
     
@@ -31,4 +32,18 @@
         fputcsv($fh, $newrecord); //remember that $newrecord is an array of strings!
         fclose($fh);
     }
+
+    function modifyLine($csvfile, $requestedRecordIndex, $newRecord) {
+        //convert the data to a php array
+        $convertedPHPArray = readCSV($csvfile);
+
+        //
+        return $convertedArray[$requestedRecordIndex];
+
+        //convert the php array back into a csv file
+        //$fputcsv($csvfile, $convertedPHPArray, '#')
+    }
+
+    $convertedPHPArray = readCSV('authors.csv');
+    print_r($convertedPHPArray[0][1]);
 ?>
