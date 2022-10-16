@@ -23,16 +23,15 @@
     }
 
     //this adds a new record to a csv file
-    function addRecord($csvFile, $record) {
+    function addRecord($csvFile, $recordpart1, $recordpart2) {
         $fh = fopen($csvFile, "a");
         fputcsv($fh, $record); # $line is an array of strings (array|string[])
         fclose($fh);
     }
 
-    
-    $array = [
-        "Mahatma" => "Ghandi"
-    ];
-    addRecord('authors.csv', $array);
+    $list = array (
+        array("Peter", "#", "Griffin")
+      );
+    addRecord('authors.csv', $list);
     
 ?>
