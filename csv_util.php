@@ -3,7 +3,7 @@
     //EXAMPLE:
     //$convertedArray = readCSV('authors.csv');
     //print_r($convertedArray);
-    function readCSV($csvFile) {
+    function readCSV($csvFile) : array {
         $fh = fopen($csvFile, 'r');
     
         while (!feof($fh) ) {
@@ -18,9 +18,9 @@
     //EXAMPLE:
     //$csvElement = readOneElementOfCSV('authors.csv', 1, 0);
     //print_r($csvElement);
-    function readOneElementOfCSV($csvFile, $index1, $index2) {
-        $csv = readCSV($csvFile);
-        return $csv[$index1][$index2];
+    function elementOfCSV($csvfile, $index) {
+        $csv = readCSV($csvfile);
+        return $csv[$index];
     }
 
     //this adds a new record to the end of the csv file
@@ -33,17 +33,55 @@
         fclose($fh);
     }
 
-    function modifyLine($csvfile, $requestedRecordIndex, $newRecord) {
+    //converts a PHP array into a CSV file
+    function convertToCSV(string $csvfile, array $myArray) {
+        //open file
+        $fh = fopen($csvfile, 'w');
+        //loop through
+        for ($i = 0; $i < count($myArray); $i++) {
+            //rewrite each line
+            fputcsv($fh, $myArray[$i], '#');
+        }
+        //close the file
+        fclose($fh);
+    }
+
+    //modifies a specific line of a csv file (by converting the csv to a php array, replacing the requested value within, and converting to a csv once more)
+    //EXAMPLE:
+    //$newData = ["Glenn", "Quagmire"];
+    //modifyLine('authors.csv', 3, $newData);
+    function modifyLine(string $csvfile, int $requestedRecordIndex, array $newRecord) {
         //convert the data to a php array
         $convertedPHPArray = readCSV($csvfile);
 
-        //
-        return $convertedArray[$requestedRecordIndex];
+        //replace the array embedded in the converted data to one that the user gives
+        $convertedPHPArray[$requestedRecordIndex] = $newRecord;
 
         //convert the php array back into a csv file
-        //$fputcsv($csvfile, $convertedPHPArray, '#')
+        convertToCSV($csvfile, $convertedPHPArray);
+    }
+    
+    //erases a specific line of a csv file
+    function eraseLine($csvfile, $requestedRecordIndex) {
+        //convert the data to a php array
+        $convertedPHPArray = readCSV($csvfile);
+
+        //make the requested position blank
+        $convertedPHPArray[$requestedRecordIndex] = [""];
+
+        //convert the php array back into a csv file
+        convertToCSV($csvfile, $convertedPHPArray);
     }
 
-    $convertedPHPArray = readCSV('authors.csv');
-    print_r($convertedPHPArray[0][1]);
+    //deletes a specific line of a csv file
+    function deleteLine($csvfile, $requestedRecordIndex) {
+        //convert the data to a php array
+        $convertedPHPArray = readCSV($csvfile);
+
+        //make the requested position blank
+        $convertedPHPArray[$requestedRecordIndex] = "";
+
+        //convert the php array back into a csv file
+        convertToCSV($csvfile, $convertedPHPArray);
+    }
 ?>
