@@ -29,6 +29,10 @@
         fclose($fh);
     }
 
-    addRecord('authors.csv', 'Mahatma#Ghandi');
+    
+    $array = [
+        "Mahatma" => "Ghandi"
+    ];
+    addRecord('authors.csv', $array);
     
 ?>
