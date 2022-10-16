@@ -22,16 +22,13 @@
         return $csv[$index1][$index2];
     }
 
-    //this adds a new record to a csv file
-    function addRecord($csvFile, $recordpart1, $recordpart2) {
+    //this adds a new record to the end of the csv file
+    //EXAMPLE:
+    //$myrecord = array("Peter#Griffin");
+    //addRecord('authors.csv', $myrecord);
+    function addRecord($csvFile, $newrecord) {
         $fh = fopen($csvFile, "a");
-        fputcsv($fh, $record); # $line is an array of strings (array|string[])
+        fputcsv($fh, $newrecord); //remember that $newrecord is an array of strings!
         fclose($fh);
     }
-
-    $list = array (
-        array("Peter", "#", "Griffin")
-      );
-    addRecord('authors.csv', $list);
-    
 ?>
