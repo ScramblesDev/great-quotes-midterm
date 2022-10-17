@@ -29,7 +29,7 @@
     //addRecord('authors.csv', $myrecord);
     function addRecord($csvFile, $newrecord) {
         $fh = fopen($csvFile, "a");
-        fputcsv($fh, $newrecord); //remember that $newrecord is an array of strings!
+        fputs($fh, implode('#', $newrecord)."\n"); //remember that $newrecord is an array of strings!
         fclose($fh);
     }
 
