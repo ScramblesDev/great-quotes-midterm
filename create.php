@@ -2,8 +2,6 @@
     require_once('csv_util.php');
     $authorList = readCSV('authors.csv');
     $authorLength = count($authorList)-1;
-    $quoteList = readCSV('quotes.csv');
-    $quoteLength = count($quoteList)-1;
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +35,8 @@
 
     //Array monitors for testing purposes
     /*
+    $quoteList = readCSV('quotes.csv');
+    $quoteLength = count($quoteList)-1;
     echo '<hr />';
     echo "POST Array<br><pre>"; print_r($_POST); echo "</pre>";
     echo "Authors Array<br><pre>"; print_r($authorList); echo "</pre>";
