@@ -39,8 +39,8 @@
         $fh = fopen($csvfile, 'w');
         //loop through
         for ($i = 0; $i < count($myArray); $i++) {
-            //rewrite each line
-            fputcsv($fh, $myArray[$i], '#');
+            //new line formula????
+            fputs($fh, implode('#', $myArray[$i])."\n"); //remember that $newrecord is an array of strings!
         }
         //close the file
         fclose($fh);

@@ -19,7 +19,9 @@
     //Write the quote to quotes.csv
     if(isset($_POST['typedquote']) && ($_POST['typedquote']) != NULL) {
         //modifies the record
-        modifyLine('quotes.csv', $_GET['id'], array($_GET['id'], $_POST['id'].'#'.$_POST['typedquote']));
+        modifyLine('quotes.csv', $_GET['id'], array($_GET['id'], $_POST['typedquote']));
+        echo 'Quote modified!<br>';
+        echo '<a href="detail.php?id='.$_GET['id'].'">Return to detail page</a>';
     }
 ?>
 </html>
