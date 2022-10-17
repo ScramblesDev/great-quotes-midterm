@@ -48,7 +48,7 @@
 
     //modifies a specific line of a csv file (by converting the csv to a php array, replacing the requested value within, and converting to a csv once more)
     //EXAMPLE:
-    //$newData = ["Glenn", "Quagmire"];
+    //$newData = ["2", "This is a quote I want to insert"];
     //modifyLine('authors.csv', 3, $newData);
     function modifyLine(string $csvfile, int $requestedRecordIndex, array $newRecord) {
         //convert the data to a php array

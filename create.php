@@ -5,7 +5,6 @@
 ?>
 
 <!DOCTYPE html>
-
 <body>
     <form method="POST">
         <input type="text" name="typedquote" placeholder="Enter a quote here!"/>
@@ -27,20 +26,8 @@
 <?php
     //Write the quote to quotes.csv
     if(isset($_POST['typedquote']) && ($_POST['typedquote']) != NULL) {
+        //adds the record
         addRecord('quotes.csv', array($_POST['authorid'].'#'.$_POST['typedquote']));
     }
-    else {
-        echo 'Please input a quote.';
-    }
-
-    //Array monitors for testing purposes
-    /*
-    $quoteList = readCSV('quotes.csv');
-    $quoteLength = count($quoteList)-1;
-    echo '<hr />';
-    echo "POST Array<br><pre>"; print_r($_POST); echo "</pre>";
-    echo "Authors Array<br><pre>"; print_r($authorList); echo "</pre>";
-    echo "Quotes Array<br><pre>"; print_r($quoteList); echo "</pre>";
-    */
 ?>
 </html>
